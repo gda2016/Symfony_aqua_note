@@ -31,3 +31,31 @@ $ sudo chmod a+x /usr/local/bin/symfony
 
 ### Start Local Server
 `$ php bin/console server:run`
+
+## Step 2 : 
+### Setup! PhpStorm + git
+```
+
+```
+$ git init
+$ git add .
+$ git status
+$ git commit 
+```
+
+## Step 3 :
+### First Page
+#### src/AppBundle/Controller/GenusController.php
+```
+use Symfony\Component\HttpFoundation\Response;
+class GenusController
+{
+    /**
+     * @Route("/genus")
+     */
+    public function showAction()
+    {
+        return new Response('Under the sea!');
+    }
+}
+```
