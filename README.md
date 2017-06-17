@@ -8,7 +8,7 @@ A Symfony project created on June 17, 2017, 4:46 pm.
 - [x] 1. [Start Project](http://knpuniversity.com/screencast/symfony/start-project)
 - [x] 2. Setup PhpStorm + git
 - [x] 3. First Page
-- [ ] 4. Routing Wildcards
+- [x] 4. [Routing Wildcards](http://knpuniversity.com/screencast/symfony/routing-wildcards#play)
 - [ ] 5. Intro to services
 - [ ] 6. Listening and Using Services
 - [ ] 7. Twig Layouts
@@ -43,7 +43,7 @@ $ git commit
 
 ## Step 3 :
 ### First Page
-#### src/AppBundle/Controller/GenusController.php
+##### src/AppBundle/Controller/GenusController.php
 ```
 <?php
 
@@ -64,3 +64,20 @@ class GenusController
     }
 }
 ```
+
+## Step 4 : 
+### Routing Wildcards
+####How? Change the URL to /genus/{genusName}:
+##### src/AppBundle/Controller/GenusController.php
+```
+
+```
+
+#### ! Tip
+Be careful when rendering direct user input (like we are here)! It introduces a security issue called XSS - [read more about XSS here.](https://www.owasp.org/index.php/Cross-site_Scripting_%28XSS%29)
+
+#### Troubleshooting
+##### Show routes
+`$ bin/console debug:router | grep /genus/`
+##### Clear cache
+`bin/console cache:clear -e prod`
