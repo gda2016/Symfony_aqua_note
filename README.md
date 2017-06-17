@@ -35,8 +35,6 @@ $ sudo chmod a+x /usr/local/bin/symfony
 ## Step 2 : 
 ### Setup! PhpStorm + git
 ```
-
-```
 $ git init
 $ git add .
 $ git status
