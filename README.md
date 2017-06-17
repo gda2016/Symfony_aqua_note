@@ -10,7 +10,7 @@ A Symfony project created on June 17, 2017, 4:46 pm.
 - [x] 3. First Page
 - [x] 4. [Routing Wildcards](http://knpuniversity.com/screencast/symfony/routing-wildcards#play)
 - [x] 5. [Intro to services](http://knpuniversity.com/screencast/symfony/services-useful-objects#play)
-- [ ] 6. Listening and Using Services
+- [x] 6. [Listening and Using Services](http://knpuniversity.com/screencast/symfony/listing-services#play)
 - [ ] 7. Twig Layouts
 - [ ] 8. Twig: For a Good time with Templates
 - [ ] 9. Loading CSS & JS Assets
@@ -67,7 +67,7 @@ class GenusController
 
 ## Step 4 : 
 ### Routing Wildcards
-####How? Change the URL to /genus/{genusName}:
+#### How? Change the URL to /genus/{genusName}:
 ##### src/AppBundle/Controller/GenusController.php
 ```
 <?php
@@ -136,3 +136,49 @@ You can actually return anything from a controller via the kernel.view event: [T
 #### [Create the Template](http://knpuniversity.com/screencast/symfony/services-useful-objects#create-the-template)
 ##### app/Resources/views/genus/show.html.twig
 `<h1>The Genus {{ name }}</h1>`
+
+## Step 5 :
+### Listing and Using Services
+#### Replace all of this code with a simple return $this->render:
+##### src/AppBundle/Controller/GenusController.php
+
+```
+... lines 1 - 8
+class GenusController extends Controller
+{
+... lines 11 - 13
+    public function showAction($genusName)
+    {
+        return $this->render('genus/show.html.twig', array(
+            'name' => $genusName
+        ));
+    }
+}
+```
+
+#### So what does this magic-looking render() function actually do? Let's find out! 
+##### vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Controller/Controller.php
+```
+... lines 1 - 38
+abstract class Controller implements ContainerAwareInterface
+{
+... lines 41 - 185
+    protected function render($view, array $parameters = array(), Response $response = null)
+    {
+        if ($this->container->has('templating')) {
+            return $this->container->get('templating')->renderResponse($view, $parameters, $response);
+        }
+... lines 191 - 202
+    }
+... lines 204 - 396
+}
+```
+
+#### [What Services are there?](http://knpuniversity.com/screencast/symfony/listing-services#what-services-are-there)
+`$ php bin/console`
+
+##### Check out that debug:container command - run that!
+`$ php bin/console debug:container`
+
+##### We could Google that, or we could pass an argument to this command to search for services matching "log"
+`$ php bin/console debug:container log`
