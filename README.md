@@ -12,7 +12,7 @@ A Symfony project created on June 17, 2017, 4:46 pm.
 - [x] 5. [Intro to services](http://knpuniversity.com/screencast/symfony/services-useful-objects#play)
 - [x] 6. [Listening and Using Services](http://knpuniversity.com/screencast/symfony/listing-services#play)
 - [x] 7. [Twig: For a Good time with Templates](http://knpuniversity.com/screencast/symfony/hello-twig#play)
-- [ ] 8. Twig Layouts (Template Inharitance)
+- [x] 8. [Twig Layouts (Template Inharitance)](http://knpuniversity.com/screencast/symfony/twig-layouts#play)
 - [ ] 9. Loading CSS & JS Assets
 - [ ] 10. JSON Responses + Route Generation
 - [ ] 11. Generating URLs
@@ -245,3 +245,39 @@ This is like *var_dump()* in PHP, but better, and you can use it without any arg
 {# {{ dump() }} #}
 ```
 
+## Step 8 :
+### Twig Layouts (Template Inheritance)
+#### To get a layout
+##### app/Resources/views/genus/show.html.twig
+```
+{% extends 'base.html.twig' %}
+<h1>The Genus {{ name }}</h1>
+<ul>
+    {% for note in notes %}
+        <li>{{ note }}</li>
+    {% endfor %}
+</ul>
+```
+
+##### app/Resources/views/base.html.twig
+```
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
+```
+
+### [The Web Debug Toolbar and Profiler](http://knpuniversity.com/screencast/symfony/twig-layouts#the-web-debug-toolbar-and-profiler)
+#### [Overriding a Second Block](http://knpuniversity.com/screencast/symfony/twig-layouts#overriding-a-second-block)
+
+#### @ Go Deeper !
+>If you want more, we have a whole screencast on just Twig templating engine: [Twig Templating for Friendly Frontend Devs](http://knpuniversity.com/screencast/twig).
