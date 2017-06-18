@@ -11,8 +11,8 @@ A Symfony project created on June 17, 2017, 4:46 pm.
 - [x] 4. [Routing Wildcards](http://knpuniversity.com/screencast/symfony/routing-wildcards#play)
 - [x] 5. [Intro to services](http://knpuniversity.com/screencast/symfony/services-useful-objects#play)
 - [x] 6. [Listening and Using Services](http://knpuniversity.com/screencast/symfony/listing-services#play)
-- [ ] 7. Twig Layouts
-- [ ] 8. Twig: For a Good time with Templates
+- [x] 7. [Twig: For a Good time with Templates](http://knpuniversity.com/screencast/symfony/hello-twig#play)
+- [ ] 8. Twig Layouts (Template Inharitance)
 - [ ] 9. Loading CSS & JS Assets
 - [ ] 10. JSON Responses + Route Generation
 - [ ] 11. Generating URLs
@@ -137,7 +137,7 @@ You can actually return anything from a controller via the kernel.view event: [T
 ##### app/Resources/views/genus/show.html.twig
 `<h1>The Genus {{ name }}</h1>`
 
-## Step 5 :
+## Step 6 :
 ### Listing and Using Services
 #### Replace all of this code with a simple return $this->render:
 ##### src/AppBundle/Controller/GenusController.php
@@ -180,5 +180,68 @@ abstract class Controller implements ContainerAwareInterface
 ##### Check out that debug:container command - run that!
 `$ php bin/console debug:container`
 
-##### We could Google that, or we could pass an argument to this command to search for services matching "log"
+To search for a specific service
+
+##### We could Google that, or we could pass an argument to this command to search for services matching "log" 
 `$ php bin/console debug:container log`
+
+
+## Step 7 :
+### Twig: For a Good time with Templates
+#### [{{ SaySomething }}, {% doSomething %}](http://knpuniversity.com/screencast/symfony/hello-twig#saysomething-dosomething)
+##### Head over to Twig's website at [twig.sensiolabs.org](http://twig.sensiolabs.org/), click Documentation and scroll down. Ah, this is a list of everything Twig does.
+
+#### [The dump() Function ](http://knpuniversity.com/screencast/symfony/hello-twig#the-dump-function)
+##### src/AppBundle/Controller/GenusController.php
+```
+<?php
+
+namespace AppBundle\Controller;
+
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
+
+class GenusController extends Controller
+{
+    /**
+     * @Route("/genus/{genusName}")
+     */
+    public function showAction($genusName)
+    {
+    	$notes = [
+            'Octopus asked me a riddle, outsmarted me',
+            'I counted 8 legs... as they wrapped around me',
+            'Inked!'
+        ];
+
+        return $this->render('genus/show.html.twig', [
+                'name' => $genusName,
+                'notes' => $notes
+        ]);
+    }
+}
+```
+
+##### But before we loop over this, I want to show you a small piece of awesome: the dump() function:
+##### app/Resources/views/genus/show.html.twig
+`{{ dump() }}`
+
+This is like *var_dump()* in PHP, but better, and you can use it without any arguments to print details about every available variable.
+
+#### @ Go Deeper !
+>See more usage examples of the dump() function in [The dump Function for Debugging](https://knpuniversity.com/screencast/twig/functions-filters#the-dump-function-for-debugging) of the separate Twig screencast. chapter.
+
+#### [The for Tag ](http://knpuniversity.com/screencast/symfony/hello-twig#the-for-tag)
+##### app/Resources/views/genus/show.html.twig
+```
+<h1>The Genus {{ name }}</h1>
+
+<ul>
+    {% for note in notes %}
+        <li>{{ note }}</li>
+    {% endfor %}
+</ul>
+{# {{ dump() }} #}
+```
+
