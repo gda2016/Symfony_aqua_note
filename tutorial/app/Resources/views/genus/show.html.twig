@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
+
 {% block title %}Genus {{ name }}{% endblock %}
+
 {% block body %}
     <h2 class="genus-name">{{ name }}</h2>
     <div class="sea-creature-container">
@@ -34,18 +36,3 @@
         {% endfor %}
     </section>
 {% endblock %}
-
-{#{% extends 'base.html.twig' %}
-
-{% block title %}Genus {{ name }}{% endblock %}
-
-{% block body %}
-<h1>The Genus {{ name }}</h1>
-
-<ul>
-    {% for note in notes %}
-        <li>{{ note }}</li>
-    {% endfor %}
-</ul>
-{% endblock %}#}
-{# {{ dump() }} #}
