@@ -16,7 +16,7 @@ A Symfony project created on June 17, 2017, 4:46 pm.
 - [x] 9. [Loading CSS & JS Assets](http://knpuniversity.com/screencast/symfony/layout-assets#the-asset-function)
 - [X] 10. [JSON Responses + Route Generation](http://knpuniversity.com/screencast/symfony/json-api#play)
 - [x] 11. Generating URLs
-- [ ] 12. ReactJS talks to your API
+- [ ] 12. [ReactJS talks to your API](http://knpuniversity.com/screencast/symfony/reactjs-api)
 
 # DOCUMENTATIONS:
 ## Step 1 :
@@ -487,3 +487,9 @@ return new JsonResponse($data);
 ##### src/AppBundle/Controller/GenusController.php
 
 #### [The Twig path() Function](http://knpuniversity.com/screencast/symfony/url-generation#the-twig-path-function)
+
+
+## Step 12 :
+### [ReactJS talks to your API](http://knpuniversity.com/screencast/symfony/reactjs-api)
+#### [Page-Specific JavaScript (or CSS)](http://knpuniversity.com/screencast/symfony/reactjs-api#page-specific-javascript-or-css)
+##### app/Resources/views/genus/show.html.twig
