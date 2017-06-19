@@ -381,3 +381,104 @@ web/vendor
     </section>
 {% endblock %}
 ```
+## Step 10 :
+### JSON Responses + Route Generation
+#### [Creating API Endpoints](http://knpuniversity.com/screencast/symfony/json-api#creating-api-endpoints)
+##### src/AppBundle/Controller/GenusController.php
+```
+<?php
+namespace AppBundle\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
+class GenusController extends Controller
+{
+    /**
+     * @Route("/genus/{genusName}")
+     */
+    public function showAction($genusName)
+    {
+        return $this->render('genus/show.html.twig', array(
+            'name' => $genusName,
+        ));
+    }
+    /**
+     * @Route("/genus/{genusName}/notes")
+     * @Method("GET")
+     */
+    public function getNotesAction($genusName)
+    {
+        $notes = [
+            ['id' => 1, 'username' => 'AquaPelham', 'avatarUri' => '/images/leanna.jpeg', 'note' => 'Octopus asked me a riddle, outsmarted me', 'date' => 'Dec. 10, 2015'],
+            ['id' => 2, 'username' => 'AquaWeaver', 'avatarUri' => '/images/ryan.jpeg', 'note' => 'I counted 8 legs... as they wrapped around me', 'date' => 'Dec. 1, 2015'],
+            ['id' => 3, 'username' => 'AquaPelham', 'avatarUri' => '/images/leanna.jpeg', 'note' => 'Inked!', 'date' => 'Aug. 20, 2015'],
+        ];
+        $data = [
+            'notes' => $notes
+        ];
+        return new Response(json_encode($data));
+    }
+}
+```
+
+#### [Missing Annotation use Statement](http://knpuniversity.com/screencast/symfony/json-api#missing-annotation-use-statement)
+##### src/AppBundle/Controller/GenusController.php
+```
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+
+$ php bin/console debug:router
+```
+
+#### [The JSON Controller](http://knpuniversity.com/screencast/symfony/json-api#the-json-controller)
+##### src/AppBundle/Controller/GenusController.php
+
+```
+class GenusController extends Controller
+<?php
+namespace AppBundle\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
+class GenusController extends Controller
+{
+    /**
+     * @Route("/genus/{genusName}")
+     */
+    public function showAction($genusName)
+    {
+        return $this->render('genus/show.html.twig', array(
+            'name' => $genusName,
+        ));
+    }
+    /**
+     * @Route("/genus/{genusName}/notes")
+     * @Method("GET")
+     */
+    public function getNotesAction($genusName)
+    {
+        $notes = [
+            ['id' => 1, 'username' => 'AquaPelham', 'avatarUri' => '/images/leanna.jpeg', 'note' => 'Octopus asked me a riddle, outsmarted me', 'date' => 'Dec. 10, 2015'],
+            ['id' => 2, 'username' => 'AquaWeaver', 'avatarUri' => '/images/ryan.jpeg', 'note' => 'I counted 8 legs... as they wrapped around me', 'date' => 'Dec. 1, 2015'],
+            ['id' => 3, 'username' => 'AquaPelham', 'avatarUri' => '/images/leanna.jpeg', 'note' => 'Inked!', 'date' => 'Aug. 20, 2015'],
+        ];
+        $data = [
+            'notes' => $notes
+        ];
+        return new Response(json_encode($data));
+    }
+}
+```
+
+#### [JsonResponse](http://knpuniversity.com/screencast/symfony/json-api#jsonresponse)
+##### src/AppBundle/Controller/GenusController.php
+Add
+```
+use Symfony\Component\HttpFoundation\JsonResponse;
+...
+return new JsonResponse($data);
+```
+#### Path : http://127.0.0.1:8001/genus/AquaNote/notes
+
+
