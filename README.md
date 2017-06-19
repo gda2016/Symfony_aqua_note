@@ -14,7 +14,7 @@ A Symfony project created on June 17, 2017, 4:46 pm.
 - [x] 7. [Twig: For a Good time with Templates](http://knpuniversity.com/screencast/symfony/hello-twig#play)
 - [x] 8. [Twig Layouts (Template Inharitance)](http://knpuniversity.com/screencast/symfony/twig-layouts#play)
 - [x] 9. [Loading CSS & JS Assets](http://knpuniversity.com/screencast/symfony/layout-assets#the-asset-function)
-- [ ] 10. JSON Responses + Route Generation
+- [X] 10. [JSON Responses + Route Generation](http://knpuniversity.com/screencast/symfony/json-api#play)
 - [ ] 11. Generating URLs
 - [ ] 12. ReactJS talks to your API
 
@@ -348,6 +348,7 @@ web/vendor
 {% block title %}Genus {{ name }}{% endblock %}
 {% block body %}
     <h2 class="genus-name">{{ name }}</h2>
+    <a href="{{ path('genus_show_notes', {'genusName': name}) }}">Json Notes</a>
     <div class="sea-creature-container">
         <div class="genus-photo"></div>
         <div class="genus-details">
@@ -365,19 +366,6 @@ web/vendor
         <h2 class="notes-header">Notes</h2>
         <div><i class="fa fa-plus plus-btn"></i></div>
     </div>
-    <section id="cd-timeline">
-        {% for note in notes %}
-            <div class="cd-timeline-block">
-                <div class="cd-timeline-img">
-                    <img src="{{ asset('images/leanna.jpeg') }}" class="img-circle" alt="Leanna!">
-                </div>
-                <div class="cd-timeline-content">
-                    <h2><a href="#">AquaPelham</a></h2>
-                    <p>{{ note }}</p>
-                    <span class="cd-date">Dec. 10, 2015</span>
-                </div>
-            </div>
-        {% endfor %}
-    </section>
+    <section id="cd-timeline"></section>
 {% endblock %}
 ```
