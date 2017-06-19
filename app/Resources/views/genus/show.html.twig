@@ -1,8 +1,9 @@
 {# Step 10 : JSON Responses + Route Generation #}
 
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %}
 {% block title %}Genus {{ name }}{% endblock %}
 {% block body %}
+
     <h2 class="genus-name">{{ name }}</h2>
     <div class="sea-creature-container">
         <div class="genus-photo"></div>
@@ -21,15 +22,18 @@
         <h2 class="notes-header">Notes</h2>
         <div><i class="fa fa-plus plus-btn"></i></div>
     </div>
-{% endblock %} 
+{% endblock %}  #}
 
 
-{# Step : 9 #}
+{# Step : 9 -11 #}
 
-{# {% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 {% block title %}Genus {{ name }}{% endblock %}
 {% block body %}
     <h2 class="genus-name">{{ name }}</h2>
+
+            <a href="{{path('genus_show_notes', {'genusName': name}) }}">Json Notes</a>
+
     <div class="sea-creature-container">
         <div class="genus-photo"></div>
         <div class="genus-details">
@@ -61,7 +65,7 @@
             </div>
         {% endfor %}
     </section>
-{% endblock %} #}
+{% endblock %}
 
 {# Step : 7 #}
 

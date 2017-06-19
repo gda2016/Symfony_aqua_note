@@ -15,7 +15,7 @@ A Symfony project created on June 17, 2017, 4:46 pm.
 - [x] 8. [Twig Layouts (Template Inharitance)](http://knpuniversity.com/screencast/symfony/twig-layouts#play)
 - [x] 9. [Loading CSS & JS Assets](http://knpuniversity.com/screencast/symfony/layout-assets#the-asset-function)
 - [X] 10. [JSON Responses + Route Generation](http://knpuniversity.com/screencast/symfony/json-api#play)
-- [ ] 11. Generating URLs
+- [x] 11. Generating URLs
 - [ ] 12. ReactJS talks to your API
 
 # DOCUMENTATIONS:
@@ -382,7 +382,7 @@ web/vendor
 {% endblock %}
 ```
 ## Step 10 :
-### JSON Responses + Route Generation
+### [JSON Responses + Route Generation](http://knpuniversity.com/screencast/symfony/json-api)
 #### [Creating API Endpoints](http://knpuniversity.com/screencast/symfony/json-api#creating-api-endpoints)
 ##### src/AppBundle/Controller/GenusController.php
 ```
@@ -482,3 +482,8 @@ return new JsonResponse($data);
 #### Path : http://127.0.0.1:8001/genus/AquaNote/notes
 
 
+## Step 11 :
+### [Generating URLs](http://knpuniversity.com/screencast/symfony/url-generation)
+##### src/AppBundle/Controller/GenusController.php
+
+#### [The Twig path() Function](http://knpuniversity.com/screencast/symfony/url-generation#the-twig-path-function)

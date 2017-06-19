@@ -15,13 +15,20 @@ class GenusController extends Controller
      */
     public function showAction($genusName)
     {
-        return $this->render('genus/show.html.twig', array(
+    	$notes = [
+            'Octopus asked me a riddle, outsmarted me',
+            'I counted 8 legs... as they wrapped around me',
+            'Inked!'
+        ];
+
+        return $this->render('genus/show.html.twig', [
             'name' => $genusName,
-        ));
+            'notes' => $notes
+        ]);
     }
 
     /**
-     * @Route("/genus/{genusName}/notes")
+     * @Route("/genus/{genusName}/notes" ,name="genus_show_notes")
      * @Method("GET")
      */
     public function getNotesAction($genusName)
